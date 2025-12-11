@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local & Session Score App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .score-box {
+      margin: 10px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      width: 250px;
+      text-align: center;
+      border-radius: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="score-box">
+    <h2>Local Score</h2>
+    <p id="localScore">0</p>
+  </div>
+
+  <div class="score-box">
+    <h2>Session Score</h2>
+    <p id="sessionScore">0</p>
+  </div>
+
+  <button id="incrementBtn">Increment Scores</button>
+
+  <script>
+    
+    let localScore = parseInt(localStorage.getItem('localScore')) || 0;
+    
+    let sessionScore = parseInt(sessionStorage.getItem('sessionScore')) || 0;
+
+    const localScoreEl = document.getElementById('localScore');
+    const sessionScoreEl = document.getElementById('sessionScore');
+
+    localScoreEl.textContent = localScore;
+    sessionScoreEl.textContent = sessionScore;
+
+    
+    document.getElementById('incrementBtn').addEventListener('click', () => {
+      localScore++;
+      sessionScore++;
+
+      
+      localStorage.setItem('localScore', localScore);
+      sessionStorage.setItem('sessionScore', sessionScore);
+
+      
+      localScoreEl.textContent = localScore;
+      sessionScoreEl.textContent = sessionScore;
+    });
+  </script>
+</body>
+</html>
